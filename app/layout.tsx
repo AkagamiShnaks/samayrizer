@@ -1,18 +1,25 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Source_Sans_3 as FontSans } from "next/font/google";
 import "./globals.css";
 
+import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
+
+import { ClerkProvider } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+import { Toaster } from "@/components/ui/sonner";
+
+
 const fontSans = FontSans({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ['200', '300', '400', '500', '600', '700', '800', '900'],
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
-
-
 export const metadata: Metadata = {
-  title: "Samayrizer-AI powered pdf summarizer",
-  description: "Sumayrizer is an app that summarizes pdf docs.",
+  title: "Samayrizer - AI-powered PDF summarizer",
+  description: "Samayrizer is an app that summarizes PDF documents.",
 };
 
 export default function RootLayout({
@@ -21,12 +28,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${fontSans.variable} font-sans antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en" className={fontSans.variable}>
+        <body className="font-sans antialiased bg-white text-gray-900">
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster/>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

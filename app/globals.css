@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-
 @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *));
@@ -47,14 +46,7 @@
   --radius-sm: calc(var(--radius) - 4px);
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Border compatibility for Tailwind v4 */
 @layer base {
   *,
   ::after,
@@ -79,25 +71,29 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 350 89% 60%;
+
+    /* Updated to real violet colors */
+    --primary: 262 83% 58%;               /* violet-500 */
     --primary-foreground: 210 40% 98%;
-    --secondary: 350 33% 96%;
-    --secondary-foreground: 350 89% 60%;
-    --muted: 350 33% 96%;
-    --muted-foreground: 215 25% 27%;
-    --accent: 350 33% 18%;
-    --accent-foreground: 350 89% 60%;
+    --secondary: 262 100% 95%;            /* light violet */
+    --secondary-foreground: 262 83% 58%;
+    --muted: 262 100% 96%;
+    --muted-foreground: 262 33% 35%;
+    --accent: 262 48% 20%;
+    --accent-foreground: 262 83% 58%;
+
     --destructive: 350 89% 50%;
     --destructive-foreground: 210 40% 98%;
-    --border: 350 33% 90%;
-    --input: 350 33% 90%;
-    --ring: 350 89% 60%;
+    --border: 262 33% 90%;
+    --input: 262 33% 90%;
+    --ring: 262 83% 58%;
     --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+
+    --chart-1: 262 83% 58%;
+    --chart-2: 271 91% 65%;
+    --chart-3: 245 60% 50%;
+    --chart-4: 290 80% 60%;
+    --chart-5: 310 65% 55%;
   }
 
   .dark {
@@ -107,24 +103,28 @@
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 350 89% 60%;
+
+    /* Updated to violet theme for dark mode */
+    --primary: 262 83% 58%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 350 33% 17.5%;
+    --secondary: 262 48% 25%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 350 33% 17.5%;
+    --muted: 262 33% 20%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 350 33% 25%;
+    --accent: 262 48% 30%;
     --accent-foreground: 210 40% 98%;
+
     --destructive: 350 89% 40%;
     --destructive-foreground: 210 40% 98%;
-    --border: 350 33% 17.5%;
-    --input: 350 33% 17.5%;
-    --ring: 350 89% 60%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 262 33% 25%;
+    --input: 262 33% 25%;
+    --ring: 262 83% 58%;
+
+    --chart-1: 262 83% 58%;
+    --chart-2: 271 91% 65%;
+    --chart-3: 245 60% 50%;
+    --chart-4: 290 80% 60%;
+    --chart-5: 310 65% 55%;
   }
 }
 
@@ -132,6 +132,7 @@
   * {
     @apply border-border;
   }
+
   h1 {
     @apply text-4xl md:text-6xl xl:text-7xl font-bold;
   }
@@ -149,12 +150,11 @@
   }
 
   button {
-    @apply hover:cursor-pointer bg-rose-600 hover:bg-rose-700;
+    @apply hover:cursor-pointer bg-violet-600 hover:bg-violet-700;
   }
 
   @keyframes gradient-x {
-    0%,
-    100% {
+    0%, 100% {
       background-size: 200% 100%;
       background-position: left center;
     }
